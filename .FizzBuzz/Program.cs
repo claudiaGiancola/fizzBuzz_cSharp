@@ -1,6 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Runtime.CompilerServices;
 
+//useful info about C# jump statement (switch case "continue" instead of "break")
+//found at A Comprehensive Walkthrough of C# Jump Statements
+//at https://www.pluralsight.com/resources/blog/guides/flow-control-csharp-jump-statements-break-continue
+
+
 Console.WriteLine("Welcome to FizzBuzz!");
 
 Console.WriteLine("Select an integer numeric range:");
@@ -12,64 +17,50 @@ string bang = "Bang";
 string bong = "Bong";
 // string fezz = "Fezz";
 
-List<string> resultList = new List<string>();
-
-string[] getSingleResult(string str, string str2)
-{
-    string[] singleResultArray = [str, str2];
-    return singleResultArray;
-}
-
 void getFizzBuzz()
 {
 
     for (int i = 1; i <= userInput; i++)
     {
+
+        //do not stop loop
+        // if (i % 3 == 0)
+        // {
+        //     resultForNumber.Add(fizz);
+        // }
+        // if (i % 5 == 0)
+        // {
+        //     resultForNumber.Add(buzz);
+        // }
+
+        List<string> resultForNumber = new List<string>();
+
         switch (true)
         {
-            case true when i % 3 == 0 && i % 7 == 0:
-                resultList.Add(string.Join("", getSingleResult(fizz, bang)));
-                break;
-
-            case true when i % 5 == 0 && i % 7 == 0:
-                resultList.Add(string.Join("", getSingleResult(buzz, bang)));
-                break;
-
-            case true when i % 3 == 0 && i % 5 == 0:
-                resultList.Add(string.Join("", getSingleResult(fizz, buzz)));
-                break;
-
-            case true when i % 13 == 0:
-                resultList.Add(fezz);
-                break;
 
             case true when i % 11 == 0:
-                resultList.Add(bong);
-                break;
-
-            case true when i % 7 == 0:
-                resultList.Add(bang);
-                break;
-
-            case true when i % 5 == 0:
-                resultList.Add(buzz);
+                resultForNumber.Add(bong);
                 break;
 
             case true when i % 3 == 0:
-                resultList.Add(fizz);
-                break;
+                resultForNumber.Add(fizz);
+                goto case true when i % 5 == 0;
+
+            case true when i % 5 == 0:
+                resultForNumber.Add(buzz);
+                continue;
+
+            case true when i % 7 == 0:
+                resultForNumber.Add(bang);
+                continue;
 
             default:
-                resultList.Add(i.ToString());
+                resultForNumber.Add(i.ToString());
                 break;
         }
-    }
 
-    foreach (var result in resultList)
-    {
-        Console.WriteLine(result);
+        Console.WriteLine(string.Join("", resultForNumber));
     }
-
 }
 
 getFizzBuzz();
