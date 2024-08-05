@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
 //useful info about C# jump statement (switch case "continue" instead of "break")
 //found at A Comprehensive Walkthrough of C# Jump Statements
@@ -23,40 +24,48 @@ void getFizzBuzz()
     for (int i = 1; i <= userInput; i++)
     {
 
-        //do not stop loop
-        // if (i % 3 == 0)
-        // {
-        //     resultForNumber.Add(fizz);
-        // }
-        // if (i % 5 == 0)
-        // {
-        //     resultForNumber.Add(buzz);
-        // }
-
         List<string> resultForNumber = new List<string>();
 
-        switch (true)
+        bool isFizz = i % 3 == 0;
+        bool isBuzz = i % 5 == 0;
+        bool isBang = i % 7 == 0;
+        bool isBong = i % 11 == 0;
+
+        if (isBong)
         {
+            resultForNumber.Add(bong);
+            Console.WriteLine(string.Join("", resultForNumber));
+            continue;
+        }
 
-            case true when i % 11 == 0:
-                resultForNumber.Add(bong);
-                break;
+        if (isFizz)
+        {
+            resultForNumber.Add(fizz);
+        }
 
-            case true when i % 3 == 0:
-                resultForNumber.Add(fizz);
-                goto case true when i % 5 == 0;
+        if (isBuzz)
+        {
+            resultForNumber.Add(buzz);
+        }
 
-            case true when i % 5 == 0:
-                resultForNumber.Add(buzz);
-                continue;
+        if (isBang)
+        {
+            resultForNumber.Add(bang);
+        }
 
-            case true when i % 7 == 0:
-                resultForNumber.Add(bang);
-                continue;
+        if (!isFizz && !isBuzz && !isBang && !isBong)
+        {
+            resultForNumber.Add(i.ToString());
+        }
 
-            default:
-                resultForNumber.Add(i.ToString());
-                break;
+        // if (i % 13 == 0)
+        // {
+
+        // }
+
+        if (i % 17 == 0)
+        {
+            resultForNumber.Reverse();
         }
 
         Console.WriteLine(string.Join("", resultForNumber));
