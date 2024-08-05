@@ -28,13 +28,6 @@ void getFizzBuzz()
         bool isFezz = i % 13 == 0;
         bool isReverse = i % 17 == 0;
 
-        if (isBong)
-        {
-            resultForNumber.Add(bong);
-            Console.WriteLine(string.Join("", resultForNumber));
-            continue;
-        }
-
         if (isFizz)
         {
             resultForNumber.Add(fizz);
@@ -50,22 +43,38 @@ void getFizzBuzz()
             resultForNumber.Add(bang);
         }
 
-        if (string.Join("", resultForNumber) == "")
+        if (isBong)
         {
-            resultForNumber.Add(i.ToString());
+            resultForNumber.Clear();
+            resultForNumber.Add(bong);
         }
 
         if (isFezz)
         {
-            if (resultForNumber[0].StartsWith('B'))
+
+            if (resultForNumber.Count == 2)
             {
-                resultForNumber.Insert(0, fezz);
+                if (resultForNumber[0].StartsWith('B'))
+                {
+                    resultForNumber.Insert(0, fezz);
+                    continue;
+                }
+
+                if (resultForNumber[1].StartsWith('B'))
+                {
+                    resultForNumber.Insert(1, fezz);
+                }
             }
-            else if (resultForNumber[1].StartsWith('B'))
+
+            if (resultForNumber.Count == 1)
             {
-                resultForNumber.Insert(1, fezz);
+                if (resultForNumber[0].StartsWith('B'))
+                {
+                    resultForNumber.Insert(0, fezz);
+                }
             }
-            else
+
+            if (resultForNumber.Count == 0)
             {
                 resultForNumber.Add(fezz);
             }
@@ -74,6 +83,11 @@ void getFizzBuzz()
         if (isReverse)
         {
             resultForNumber.Reverse();
+        }
+
+        if (string.Join("", resultForNumber) == "")
+        {
+            resultForNumber.Add(i.ToString());
         }
 
         Console.WriteLine(string.Join("", resultForNumber));
