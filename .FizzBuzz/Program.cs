@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Runtime.CompilerServices;
+
 Console.WriteLine("Welcome to FizzBuzz!");
 
 Console.WriteLine("Select an integer numeric range:");
@@ -8,46 +10,65 @@ string fizz = "Fizz";
 string buzz = "Buzz";
 string bang = "Bang";
 string bong = "Bong";
-string fezz = "Fezz";
+// string fezz = "Fezz";
 
-for (int i = 1; i <= userInput; i++)
+List<string> resultList = new List<string>();
+
+string getSingleResult(string str, string str2)
 {
-    switch (true)
-    {
-        case true when i % 3 == 0 && i % 7 == 0:
-            Console.WriteLine(fizz + bang);
-            break;
-
-        case true when i % 5 == 0 && i % 7 == 0:
-            Console.WriteLine(buzz + bang);
-            break;
-
-        case true when i % 3 == 0 && i % 5 == 0:
-            Console.WriteLine(fizz + buzz);
-            break;
-
-        case true when i % 13 == 0:
-            Console.WriteLine(fezz);
-            break;
-
-        case true when i % 11 == 0:
-            Console.WriteLine(bong);
-            break;
-
-        case true when i % 7 == 0:
-            Console.WriteLine(bang);
-            break;
-
-        case true when i % 5 == 0:
-            Console.WriteLine(buzz);
-            break;
-
-        case true when i % 3 == 0:
-            Console.WriteLine(fizz);
-            break;
-
-        default:
-            Console.WriteLine(i);
-            break;
-    }
+    return str + str2;
 }
+
+void getFizzBuzz()
+{
+
+    for (int i = 1; i <= userInput; i++)
+    {
+        switch (true)
+        {
+            case true when i % 3 == 0 && i % 7 == 0:
+                resultList.Add(getSingleResult(fizz, bang));
+                break;
+
+            case true when i % 5 == 0 && i % 7 == 0:
+                resultList.Add(getSingleResult(buzz, bang));
+                break;
+
+            case true when i % 3 == 0 && i % 5 == 0:
+                resultList.Add(getSingleResult(fizz, buzz));
+                break;
+
+            // case true when i % 13 == 0:
+            //     resultList.Add(fezz);
+            //     break;
+
+            case true when i % 11 == 0:
+                resultList.Add(bong);
+                break;
+
+            case true when i % 7 == 0:
+                resultList.Add(bang);
+                break;
+
+            case true when i % 5 == 0:
+                resultList.Add(buzz);
+                break;
+
+            case true when i % 3 == 0:
+                resultList.Add(fizz);
+                break;
+
+            default:
+                resultList.Add(i.ToString());
+                break;
+        }
+    }
+
+    foreach (var result in resultList)
+    {
+        Console.WriteLine(result);
+    }
+
+}
+
+getFizzBuzz();
