@@ -14,9 +14,10 @@ string bong = "Bong";
 
 List<string> resultList = new List<string>();
 
-string getSingleResult(string str, string str2)
+string[] getSingleResult(string str, string str2)
 {
-    return str + str2;
+    string[] singleResultArray = [str, str2];
+    return singleResultArray;
 }
 
 void getFizzBuzz()
@@ -27,20 +28,20 @@ void getFizzBuzz()
         switch (true)
         {
             case true when i % 3 == 0 && i % 7 == 0:
-                resultList.Add(getSingleResult(fizz, bang));
+                resultList.Add(string.Join("", getSingleResult(fizz, bang)));
                 break;
 
             case true when i % 5 == 0 && i % 7 == 0:
-                resultList.Add(getSingleResult(buzz, bang));
+                resultList.Add(string.Join("", getSingleResult(buzz, bang)));
                 break;
 
             case true when i % 3 == 0 && i % 5 == 0:
-                resultList.Add(getSingleResult(fizz, buzz));
+                resultList.Add(string.Join("", getSingleResult(fizz, buzz)));
                 break;
 
-            // case true when i % 13 == 0:
-            //     resultList.Add(fezz);
-            //     break;
+            case true when i % 13 == 0:
+                resultList.Add(fezz);
+                break;
 
             case true when i % 11 == 0:
                 resultList.Add(bong);
